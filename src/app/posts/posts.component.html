@@ -3,7 +3,13 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Posts">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:75%">Buscar</th>
+                <th style="width:75%">
+                  <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" style="margin-left: 5px; width: 40em" pInputText class="p-inputtext-sm" placeholder="Buscar">
+                  </span>
+                  <button pButton type="button" label="Consultar" class="p-button-sm" style="margin: 2px;"></button>
+                </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-post>
@@ -11,13 +17,22 @@
                 <td>
                   <p-card>
                     <ng-template pTemplate="header">
-                        <b style="font-size: 25px; margin-left:5px">{{post.title}}</b>
+                      <b style="font-size: 25px; margin-left:5px">{{post.title}}</b>
                     </ng-template>
                     <ng-template pTemplate="subheader">
-                        {{post.body}}
+                      {{post.body}}
                     </ng-template>
                     <ng-template pTemplate="footer">
-                        Footer content here
+                      <p-button (click)="showDialog(post.body, post.title)" icon="pi pi-external-link" styleClass="p-button-sm" label="Detalhes"></p-button>
+                      <p-dialog [(visible)]="display" [style]="{width: '400px'}">
+                        <ng-template pTemplate="header">
+                          <p style="font-weight: bold">{{title}}</p>
+                        </ng-template>
+                        <p>{{body}}</p>
+                        <ng-template pTemplate="footer">
+                            <p-button icon="pi pi-check" (click)="display=false" label="Ok" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                    </p-dialog>
                     </ng-template>
                 </p-card>
                 </td>

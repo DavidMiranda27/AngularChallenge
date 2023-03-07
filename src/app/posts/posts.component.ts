@@ -13,6 +13,10 @@ export class PostsComponent implements OnInit {
   first = 0;
   rows = 5;
 
+  display: boolean = false;
+  body: string = '';
+  title: string = '';
+
   constructor(private service: PostsService) {}
 
   ngOnInit(): void {
@@ -28,6 +32,12 @@ export class PostsComponent implements OnInit {
           }
         }
       );
+  }
+
+  showDialog(body: string, title: string) {
+    this.display = true;
+    this.body = body;
+    this.title = title;
   }
 
 }
