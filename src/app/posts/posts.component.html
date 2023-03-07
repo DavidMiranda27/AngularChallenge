@@ -1,0 +1,27 @@
+<div class="card">
+  <p-table [value]="posts" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Posts">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:75%">Buscar</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-post>
+            <tr>
+                <td>
+                  <p-card>
+                    <ng-template pTemplate="header">
+                        <b style="font-size: 25px; margin-left:5px">{{post.title}}</b>
+                    </ng-template>
+                    <ng-template pTemplate="subheader">
+                        {{post.body}}
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        Footer content here
+                    </ng-template>
+                </p-card>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
