@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { PostsComponent } from './posts.component';
 
@@ -18,6 +19,7 @@ import {InputTextModule} from 'primeng/inputtext';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,
     ButtonModule,
     CardModule,
     TableModule,

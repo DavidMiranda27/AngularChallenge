@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { PostsService } from '../services/posts.servece';
 import Post from './post';
 
@@ -17,6 +18,11 @@ export class PostsComponent implements OnInit {
   body: string = '';
   title: string = '';
 
+  postsFiltered: Post[] = [];
+  postsBackup: Post[] = [];
+
+  displayModal: boolean = false;
+
   constructor(private service: PostsService) {}
 
   ngOnInit(): void {
@@ -25,7 +31,7 @@ export class PostsComponent implements OnInit {
         {
           next: (posts) => {
             this.posts = posts;
-            console.log(posts);
+            this.postsBackup = posts;
           },
           error: (err) => {
             console.log(err);
@@ -35,9 +41,27 @@ export class PostsComponent implements OnInit {
   }
 
   showDialog(body: string, title: string) {
-    this.display = true;
     this.body = body;
     this.title = title;
+    this.display = true;
+  }
+
+  findPostsByTitleBody(value: string) {
+
+    if (value === '') {
+      this.posts = this.postsBackup;
+      return;
+    }
+
+    this.postsFiltered = this.posts.filter((post) => {
+      return post.title.includes(value) || post.body.includes(value)}
+    );
+
+    if (this.postsFiltered.length > 0) {
+      this.posts = this.postsFiltered;
+    }else {
+      this.displayModal = true;
+    }
   }
 
 }
